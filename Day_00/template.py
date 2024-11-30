@@ -6,7 +6,7 @@ def main(part):
 	solution = part
 	dir_path = os.path.dirname(os.path.realpath(__file__))
 	with open(f"{dir_path}/input.txt", "r") as f:
-		return solution
+		return "test"
 
 if __name__ == "__main__":
 	start_time = time.time()
