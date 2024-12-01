@@ -10,8 +10,8 @@ def main(part):
 
 if __name__ == "__main__":
 	start_time = time.time()
-	print(f" Part 1 solution: {main(1)}")
-	print("Part 1 finished --- %s seconds ---" % (time.time() - start_time))
+	print(f"Part 1 solution: {main(1)}")
+	print("Part 1 finished in %s seconds" % (time.time() - start_time))
 	mid_time = time.time()
-	print(f" Part 2 solution: {main(2)}")
-	print("Part 2 finished --- %s seconds ---" % (time.time() - mid_time))
+	print(f"Part 2 solution: {main(2)}")
+	print("Part 2 finished in %s seconds" % (time.time() - mid_time))
