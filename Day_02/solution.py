@@ -5,21 +5,20 @@ def main(part):
 
 	reports = []
 	solution = 0
-
 	dir_path = os.path.dirname(os.path.realpath(__file__))
 	with open(f"{dir_path}/input.txt", "r") as f:
 		while(len(line := f.readline()) != 0):
 			reports.append([int(x) for x in line.split()])
 
-		for report in reports:
-			if part == 1:
-				solution += is_safe(report)
+	for report in reports:
+		if part == 1:
+			solution += is_safe(report)
+		else:
+			if is_safe(report) == 0:
+				solution += int(any([is_safe(report[:i] + report[i+1:]) for i in range(len(report))]))
 			else:
-				if is_safe(report) == 0:
-					solution += int(any([is_safe(report[:i] + report[i+1:]) for i in range(len(report))]))
-				else:
-					solution += 1
-		return solution
+				solution += 1
+	return solution
 
 def is_safe(report):
 	# Increasing
