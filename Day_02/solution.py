@@ -2,7 +2,6 @@ import os
 import time
 
 def main(part):
-
 	reports = []
 	solution = 0
 	dir_path = os.path.dirname(os.path.realpath(__file__))
