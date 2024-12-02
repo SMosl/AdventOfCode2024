@@ -14,27 +14,21 @@ def main(part):
 		if part == 1:
 			solution += is_safe(report)
 		else:
-			if is_safe(report) == 0:
-				solution += int(any([is_safe(report[:i] + report[i+1:]) for i in range(len(report))]))
-			else:
-				solution += 1
+			solution += int(any([is_safe(report)] + [is_safe(report[:i] + report[i+1:]) for i in range(len(report))]))
+
 	return solution
 
 def is_safe(report):
 	# Increasing
 	if report[0] < report[1] < report[0] + 4:
 		for i in range(len(report) - 2):
-			if report[i+1] >= report[i+2]:
-				return 0
-			elif (report[i+1] + 4) <= report[i+2]:
+			if report[i+1] >= report[i+2] or (report[i+1] + 4) <= report[i+2]:
 				return 0
 		return 1
 	# Decreasing
 	elif report[0] > report[1] > report[0] - 4:
 		for i in range(len(report) - 2):
-			if report[i+1] <= report[i+2]:
-				return 0
-			elif report[i+1] - 4 >= report[i+2]:
+			if report[i+1] <= report[i+2] or report[i+1] - 4 >= report[i+2]:
 				return 0
 		return 1
 	# First two items are the same
