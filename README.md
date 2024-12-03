@@ -14,4 +14,4 @@ To create a folder for "Day_X" with individual solution.py, input.txt and testin
 
 `cd "Day X"`
 
-`python DayX.py`
+`python solution.py`
