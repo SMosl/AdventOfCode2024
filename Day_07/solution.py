@@ -1,6 +1,7 @@
 import os
 import time
 from collections import deque
+import math
 
 def main(part):
 
@@ -22,7 +23,7 @@ def main(part):
 					possibilities.extend([possibilities[0] * nums[0], possibilities[0] + nums[0]])
 					possibilities.popleft()
 				else:
-					possibilities.extend([possibilities[0] * nums[0], possibilities[0] + nums[0], int(str(possibilities[0]) + str(nums[0]))])
+					possibilities.extend([possibilities[0] * nums[0], possibilities[0] + nums[0], possibilities[0] * 10 ** math.floor(math.log10(nums[0]) + 1) + nums[0]])
 					possibilities.popleft()
 			nums.popleft()
 		if test_value in possibilities:
