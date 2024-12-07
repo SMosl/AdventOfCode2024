@@ -13,7 +13,6 @@ def main(part):
 			eq = line.split(':')
 			equations[int(eq[0])] = [int(x) for x in eq[1].split()]
 
-
 	for test_value in equations.keys():
 		nums = deque(equations[test_value][1:])
 		possibilities = deque([equations[test_value][0]])
