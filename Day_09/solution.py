@@ -25,7 +25,6 @@ def main(part):
 
     if part == 1:
         for file in files:
-            #file = files[0]
             for i in range(file[1]):
                 if file[0] + file[1] - i > free_space[0][0]:
                     compact_files.append((free_space[0][0], 1, file[2]))
@@ -34,7 +33,6 @@ def main(part):
                         free_space.pop(0)
                 else:
                     compact_files.append((file[0] + file[1] - 1 - i, 1, file[2]))
-            #files.pop(0)
     else:
         for file in files:
             space_to_take = next((x for x in free_space if x[0] < file[0] and x[1] >= file[1]), None)
