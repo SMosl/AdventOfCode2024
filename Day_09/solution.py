@@ -46,11 +46,12 @@ def main(part):
                     free_space.pop(new_index)
             else:
                 compact_files.append(file)
-  
+
     solution = 0
     for x in compact_files:
         solution += sum([(x[0] + i) * x[2] for i in range(x[1])])
     return(solution)
+
 
 if __name__ == "__main__":
     start_time = time.time()
