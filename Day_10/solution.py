@@ -7,6 +7,7 @@ def main(part):
     trailhead_coords = set()
     y_i = 0
     solution = 0
+
     dir_path = os.path.dirname(os.path.realpath(__file__))
     with open(f"{dir_path}/input.txt", "r") as f:
         while len(line := f.readline().split()) != 0:
@@ -14,7 +15,7 @@ def main(part):
             grid.append([int(x) for x in list(line[0])])
             trailhead_coords = trailhead_coords | {(x, y_i) for x in x_i}
             y_i += 1
-    
+
     for start in trailhead_coords:
         solution += find_score(grid, start, part)
 
@@ -22,14 +23,16 @@ def main(part):
 
 
 def find_score(grid, start, part):
+
     paths = [[(start[0], start[1])]]
     directions = [(1,0), (0, 1), (-1, 0), (0, -1)]
     visited_peaks = set()
     score = 0
+
     while paths:
         path = paths.pop(0)
         curr_height = path[-1]
-        if grid[curr_height[1]][curr_height[0]] == 9 and ((curr_height not in visited_peaks)or (part == 2)):
+        if grid[curr_height[1]][curr_height[0]] == 9 and ((curr_height not in visited_peaks) or (part == 2)):
             visited_peaks.add(curr_height)
             score += 1
         else:
