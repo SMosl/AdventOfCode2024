@@ -26,7 +26,7 @@ def main(part):
         stones = after_iteration
 
     return(sum(stones.values()))
-    
+
 
 if __name__ == "__main__":
     start_time = time.time()
