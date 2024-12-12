@@ -29,17 +29,18 @@ def main(part):
 
 def find_regions(garden):
     regions = []
-    counted = set()
+    visited = set()
     for y, row in enumerate(garden):
         for x in range(len(row)):
-            if (x, y) not in counted:
+            if (x, y) not in visited:
                 connected_region = find_connected_region(x, y, garden)
-                counted = counted | connected_region
+                visited = visited | connected_region
                 regions.append(connected_region)
     return(regions)
 
 
 def find_connected_region(x, y, garden):
+    # Given a point (x,y), find all points in the garden that are connected to (x,y) and share the same plot value
     directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
     connected_region = {(x, y)}
     queue = deque([(x, y)])
@@ -56,6 +57,7 @@ def find_connected_region(x, y, garden):
 
 
 def find_shared_edges(plot, coords, garden):
+    # A point in a region contributes 4-x sides to the perimiter, where x is the number of adjacent plots of the same value  
     directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
     shared_edges = 0
     for location in coords:
@@ -63,7 +65,6 @@ def find_shared_edges(plot, coords, garden):
             if (0 <= location[0] + d[0] <= len(garden[0]) - 1) and (0 <= location[1] + d[1] <= len(garden) - 1):
                 if garden[location[1] + d[1]][location[0] + d[0]] == plot:
                     shared_edges += 1
-    
     return(shared_edges)
 
 
