@@ -18,10 +18,10 @@ def main(part):
         i = next(iter(region))
         plot_val = garden[i[1]][i[0]]
         perimeter = (4 * len(region) - find_shared_edges(plot_val, region, garden))
-        tot_sides = perimeter - find_sides(plot_val, region, garden)
         if part == 1:
             tot_price += len(region) * perimeter
         else:
+            tot_sides = perimeter - find_sides(plot_val, region, garden)
             tot_price += len(region) * tot_sides
 
     return(tot_price)
