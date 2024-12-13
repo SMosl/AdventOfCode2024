@@ -1,7 +1,7 @@
 import os
 import time
 import re
-import sympy as sym
+import sympy
 
 def main(part):
 
@@ -14,11 +14,11 @@ def main(part):
         
     for group in f:
         instructions = [int(x) for x in re.findall(r"(\d+)", group)]
-        x,y = sym.symbols('x,y')
-        eq1 = sym.Eq(instructions[0] * x + instructions[2] * y, conversion_error + instructions[4])
-        eq2 = sym.Eq(instructions[1] * x + instructions[3] * y, conversion_error + instructions[5])
-        result = sym.solve([eq1, eq2], (x, y))
-        if type(result[x]) == type(result[y]) == sym.core.numbers.Integer:
+        x,y = sympy.symbols('x,y')
+        eq1 = sympy.Eq(instructions[0] * x + instructions[2] * y, conversion_error + instructions[4])
+        eq2 = sympy.Eq(instructions[1] * x + instructions[3] * y, conversion_error + instructions[5])
+        result = sympy.solve([eq1, eq2], (x, y))
+        if type(result[x]) == type(result[y]) == sympy.core.numbers.Integer:
             solution += result[x] * 3 + result[y]
     
     return(solution)
