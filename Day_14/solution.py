@@ -36,9 +36,9 @@ def main(part):
             # Bottom right
             elif pos[0] > width//2 and pos[1] > height//2:
                 quadrant_counts[3] += 1
-        
+
         return(math.prod(quadrant_counts))
-    
+
     else:
         with open(f"{dir_path}/output.txt", "w") as f2:
             for n in range(10000):
