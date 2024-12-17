@@ -32,7 +32,6 @@ def main(part):
 
 
 def find_output(reg_A, instructions):
-
     A = int(reg_A)
     B = 0
     C = 0
