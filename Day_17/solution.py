@@ -7,7 +7,7 @@ def main(part):
     dir_path = os.path.dirname(os.path.realpath(__file__))
     with open(f"{dir_path}/input.txt", "r") as f:
         data = f.read()
-    
+
     input = re.match(r"Register A: (\d+)\s*Register B: (\d+)\s*Register C: (\d+)\s*Program: ([\d,]+)", data).groups()
     instructions = [int(x) for x in input[3].split(',')]
     part_2_substrings = {','.join([str(x) for x in instructions[y:]]) for y in range(1, len(instructions) - 1)}
@@ -16,20 +16,19 @@ def main(part):
         return(find_output(input[0], instructions))
     else:
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        with open(f"{dir_path}/output.txt", "w") as f:
-            # A = 24, 25, 29 and 31 all return "3,0"
-            queue = deque([24, 25, 29, 31])
-            while queue:
-                in_A = queue[0]
-                queue.popleft()
-                for n in range(10):
-                    next_A = (in_A * 8) + n
-                    out_A = find_output(next_A, instructions)
-                    if out_A in part_2_substrings:
-                        queue.append(next_A)
-                        f.write(out_A + ' ' + str(in_A) + ' ' + str(next_A) + '\n')
-                    elif out_A == "2,4,1,5,7,5,1,6,0,3,4,0,5,5,3,0":
-                        return next_A
+        # A = 24, 25, 29 and 31 all return "3,0"
+        # the next value in the seqence will be found by using A = A * 8 + x for some small x
+        queue = deque([24, 25, 29, 31])
+        while queue:
+            in_A = queue[0]
+            queue.popleft()
+            for n in range(10):
+                next_A = (in_A * 8) + n
+                out_A = find_output(next_A, instructions)
+                if out_A in part_2_substrings:
+                    queue.append(next_A)
+                elif out_A == ','.join([str(x) for x in instructions]):
+                    return next_A
 
 
 def find_output(reg_A, instructions):
@@ -68,7 +67,7 @@ def run_instruction(A, B, C, opcode, operand, pointer):
         combo_operand = C
     elif operand == 7:
         print('Part 1 says this shouldn\'t really happen...')
-    
+
     match opcode:
         case 0:
             A = A // (2 ** combo_operand)
