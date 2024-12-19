@@ -30,7 +30,7 @@ def find_possibilities(design, available_towels):
     for towel in available_towels:
         if design == towel:
             num_possibilities += 1
-        if re.match(towel, design):
+        if design.startswith(towel):
             design_remaining = design[len(towel):]
             num_possibilities += find_possibilities(design_remaining, available_towels)
 
