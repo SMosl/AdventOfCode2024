@@ -4,6 +4,7 @@ import re
 import functools
 from collections import defaultdict
 
+
 def main(part):
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -20,6 +21,7 @@ def main(part):
         return(sum(x > 0 for x in num_possibilities.values()))
     else:
         return(sum(x for x in num_possibilities.values()))
+
 
 @functools.cache
 def find_possibilities(design, available_towels):
